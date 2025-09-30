@@ -1,18 +1,41 @@
+"use client";
 import React from "react";
 
-export default function Sidebar() {
+type SidebarProps = {
+    active: string;
+    setActive: (section: string) => void;
+};
+
+export default function Sidebar({ active, setActive }: SidebarProps) {
+
+    const sections = [
+        "Home",
+        "Insights",
+        "Visualisations",
+        "Dashboards",
+        "Predictions",
+        "Collaboration",
+        "Reports",
+        "Settings",
+    ];
+
     return (
         <aside className="w-64 bg-gray-100 p-4 flex flex-col h-screen">
-            <h2 className="text-2xl font-bold mb-6">Dashboard</h2>
+            <h2 className="text-2xl font-bold mb-6">AI Data Explorer</h2>
             <ul className="space-y-3">
-                <li className="hover:text-blue-600 cursor-pointer">Home</li>
-                <li className="hover:text-blue-600 cursor-pointer">Insights</li>
-                <li className="hover:text-blue-600 cursor-pointer">Visualisations</li>
-                <li className="hover:text-blue-600 cursor-pointer">Dashboards</li>
-                <li className="hover:text-blue-600 cursor-pointer">Predictions</li>
-                <li className="hover:text-blue-600 cursor-pointer">Collaboration</li>
-                <li className="hover:text-blue-600 cursor-pointer">Reports</li>
-                <li className="hover:text-blue-600 cursor-pointer">Settings</li>
+                {sections.map((section) => (
+                    <li
+                        key={section}
+                        className={`cursor-pointer ${
+                            active === section
+                                ? "text-blue-600 font-semibold"
+                                : "hover:text-blue-600"
+                        }`}
+                        onClick={() => setActive(section)}
+                    >
+                        {section}
+                    </li>
+                ))}
             </ul>
         </aside>
     );
