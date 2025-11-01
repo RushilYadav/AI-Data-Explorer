@@ -1,19 +1,23 @@
-"use client";
-import { useState } from "react";
-import Navbar from "../components/Dashboard/Navbar";
-import Sidebar from "../components/Dashboard/Sidebar";
-import MainContent from "../components/Dashboard/MainContent";
+'use client';
+import Link from 'next/link';
 
-export default function Page() {
-    const [activeSection, setActiveSection] = useState("Home");
-
-    return (
-        <div className="flex h-screen">
-        <Sidebar active={activeSection} setActive={setActiveSection} />
-        <div className="flex-1 flex flex-col">
-            <Navbar />
-            <MainContent active={activeSection} />
-        </div>
-        </div>
-    );
+export default function HomePage() {
+  return (
+    <div className="flex items-center justify-center h-screen bg-gray-100">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold mb-6">AI Data Explorer</h1>
+        <Link href="/auth/login">
+          <button className="bg-blue-600 text-white px-6 py-3 rounded">
+            Login
+          </button>
+        </Link>
+        <p className="text-sm text-center mt-3">
+            Don't have an account?{' '}
+            <Link href="/auth/signup" className="text-blue-600">
+                Sign Up
+            </Link>
+        </p>
+      </div>
+    </div>
+  );
 }
